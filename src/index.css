@@ -1,153 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
-
-/* Luxury Real Estate Design System - Dark, Cinematic, Glassmorphism */
-
 @layer base {
   :root {
-    --background: 0 0% 4%;
-    --foreground: 45 20% 95%;
-
-    --card: 0 0% 7%;
-    --card-foreground: 45 20% 95%;
-
-    --popover: 0 0% 7%;
-    --popover-foreground: 45 20% 95%;
-
-    --primary: 43 74% 49%;
-    --primary-foreground: 0 0% 4%;
-
+    /* Gym Energetic Theme - Neon Green & Black */
+    --background: 0 0% 5%;
+    --foreground: 0 0% 98%;
+    
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 98%;
+    
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 98%;
+    
+    --primary: 142 100% 50%;
+    --primary-foreground: 0 0% 5%;
+    
     --secondary: 0 0% 12%;
-    --secondary-foreground: 45 20% 95%;
-
+    --secondary-foreground: 0 0% 98%;
+    
     --muted: 0 0% 15%;
-    --muted-foreground: 45 10% 60%;
-
-    --accent: 43 74% 49%;
-    --accent-foreground: 0 0% 4%;
-
-    --destructive: 0 62% 50%;
-    --destructive-foreground: 45 20% 95%;
-
+    --muted-foreground: 0 0% 65%;
+    
+    --accent: 142 100% 50%;
+    --accent-foreground: 0 0% 5%;
+    
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 0 0% 98%;
+    
     --border: 0 0% 18%;
-    --input: 0 0% 15%;
-    --ring: 43 74% 49%;
-
-    --radius: 0.5rem;
-
-    /* Custom luxury tokens */
-    --gold: 43 74% 49%;
-    --gold-muted: 43 50% 35%;
-    --champagne: 45 30% 80%;
-    --obsidian: 0 0% 6%;
+    --input: 0 0% 18%;
+    --ring: 142 100% 50%;
+    
+    --radius: 0.75rem;
+    
+    /* Custom Gym Tokens */
+    --neon: 142 100% 50%;
+    --neon-glow: 142 100% 45%;
     --charcoal: 0 0% 10%;
-    --smoke: 0 0% 20%;
-
-    /* Glassmorphism */
-    --glass-bg: 0 0% 100% / 0.05;
-    --glass-border: 0 0% 100% / 0.1;
-    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-
-    /* Typography */
-    --font-display: 'Playfair Display', serif;
-    --font-body: 'Inter', sans-serif;
-
+    --dark-steel: 0 0% 7%;
+    --energy-orange: 25 100% 55%;
+    
+    /* Sidebar tokens */
     --sidebar-background: 0 0% 6%;
-    --sidebar-foreground: 45 20% 95%;
-    --sidebar-primary: 43 74% 49%;
-    --sidebar-primary-foreground: 0 0% 4%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 142 100% 50%;
+    --sidebar-primary-foreground: 0 0% 5%;
     --sidebar-accent: 0 0% 12%;
-    --sidebar-accent-foreground: 45 20% 95%;
+    --sidebar-accent-foreground: 0 0% 98%;
     --sidebar-border: 0 0% 18%;
-    --sidebar-ring: 43 74% 49%;
+    --sidebar-ring: 142 100% 50%;
   }
 
-  .dark {
-    --background: 0 0% 4%;
-    --foreground: 45 20% 95%;
-    --card: 0 0% 7%;
-    --card-foreground: 45 20% 95%;
-    --popover: 0 0% 7%;
-    --popover-foreground: 45 20% 95%;
-    --primary: 43 74% 49%;
-    --primary-foreground: 0 0% 4%;
-    --secondary: 0 0% 12%;
-    --secondary-foreground: 45 20% 95%;
-    --muted: 0 0% 15%;
-    --muted-foreground: 45 10% 60%;
-    --accent: 43 74% 49%;
-    --accent-foreground: 0 0% 4%;
-    --destructive: 0 62% 50%;
-    --destructive-foreground: 45 20% 95%;
-    --border: 0 0% 18%;
-    --input: 0 0% 15%;
-    --ring: 43 74% 49%;
-  }
-}
-
-@layer base {
   * {
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-background text-foreground font-body antialiased;
-    font-family: var(--font-body);
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-display);
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
   }
 }
 
 @layer components {
-  .glass {
-    @apply bg-white/5 backdrop-blur-xl border border-white/10;
-    box-shadow: var(--glass-shadow);
+  /* Neon Button Primary */
+  .btn-neon {
+    @apply inline-flex items-center justify-center px-8 py-4 font-semibold uppercase tracking-wider text-sm;
+    @apply bg-primary text-primary-foreground;
+    @apply rounded-lg transition-all duration-300;
+    @apply hover:shadow-[0_0_30px_hsl(142_100%_50%/0.5)] hover:scale-105;
+    font-family: 'Oswald', sans-serif;
   }
 
+  .btn-neon-outline {
+    @apply inline-flex items-center justify-center px-8 py-4 font-semibold uppercase tracking-wider text-sm;
+    @apply border-2 border-primary text-primary bg-transparent;
+    @apply rounded-lg transition-all duration-300;
+    @apply hover:bg-primary hover:text-primary-foreground hover:shadow-[0_0_30px_hsl(142_100%_50%/0.5)];
+    font-family: 'Oswald', sans-serif;
+  }
+
+  /* Glass Card */
   .glass-card {
-    @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-lg;
-    box-shadow: var(--glass-shadow);
+    @apply bg-card/80 backdrop-blur-xl border border-border rounded-xl;
+    box-shadow: 0 10px 40px hsl(0 0% 0% / 0.5);
   }
 
-  .gold-gradient {
-    background: linear-gradient(135deg, hsl(var(--gold)) 0%, hsl(var(--champagne)) 50%, hsl(var(--gold)) 100%);
+  /* Section Container */
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24;
   }
 
-  .text-gold-gradient {
-    background: linear-gradient(135deg, hsl(var(--gold)) 0%, hsl(var(--champagne)) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  /* Section Title */
+  .section-title {
+    @apply text-4xl md:text-5xl font-bold text-center mb-4;
+    font-family: 'Oswald', sans-serif;
   }
 
-  .luxury-button {
-    @apply px-8 py-4 font-medium tracking-widest uppercase text-sm transition-all duration-500;
-    @apply bg-transparent border border-white/20 text-foreground;
-    @apply hover:border-primary hover:text-primary hover:shadow-lg hover:shadow-primary/20;
+  .section-subtitle {
+    @apply text-muted-foreground text-center text-lg max-w-2xl mx-auto mb-12;
   }
 
-  .luxury-button-primary {
-    @apply px-8 py-4 font-medium tracking-widest uppercase text-sm transition-all duration-500;
-    @apply bg-primary text-primary-foreground border border-primary;
-    @apply hover:bg-transparent hover:text-primary hover:shadow-lg hover:shadow-primary/20;
+  /* Neon Text Gradient */
+  .text-neon-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(142 100% 50%) 0%, hsl(25 100% 55%) 100%);
   }
 
-  .section-divider {
-    @apply w-24 h-px bg-gradient-to-r from-transparent via-primary to-transparent mx-auto;
+  /* Card Hover Effect */
+  .card-hover {
+    @apply transition-all duration-300 hover:translate-y-[-5px] hover:shadow-[0_20px_40px_hsl(0_0%_0%/0.5)];
+  }
+
+  /* Neon Border Glow */
+  .neon-border {
+    @apply border border-primary/30;
+    box-shadow: inset 0 0 20px hsl(142 100% 50% / 0.1);
+  }
+
+  /* Input Styling */
+  .gym-input {
+    @apply w-full bg-secondary border border-border rounded-lg px-4 py-3 text-foreground;
+    @apply placeholder:text-muted-foreground focus:outline-none focus:border-primary/50;
+    @apply transition-all duration-300;
+  }
+
+  /* Pricing Badge */
+  .badge-popular {
+    @apply absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 text-xs font-bold uppercase;
+    @apply bg-primary text-primary-foreground rounded-full;
+    font-family: 'Oswald', sans-serif;
   }
 }
 
 @layer utilities {
-  .font-display {
-    font-family: var(--font-display);
+  .animate-pulse-neon {
+    animation: pulse-neon 2s infinite;
   }
 
-  .font-body {
-    font-family: var(--font-body);
+  @keyframes pulse-neon {
+    0%, 100% {
+      box-shadow: 0 0 20px hsl(142 100% 50% / 0.4);
+    }
+    50% {
+      box-shadow: 0 0 40px hsl(142 100% 50% / 0.7);
+    }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
   }
 }

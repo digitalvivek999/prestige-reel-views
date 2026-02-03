@@ -1,38 +1,69 @@
 import { motion } from "framer-motion";
 import { Instagram } from "lucide-react";
+import { useEffect, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
 
-const trainers = [
+interface Trainer {
+  id: string;
+  name: string;
+  specialty: string;
+  experience: string;
+  quote: string | null;
+  image_url: string | null;
+}
+
+const fallbackTrainers = [
   {
+    id: "1",
     name: "Marcus Johnson",
-    specialization: "Strength & Conditioning",
+    specialty: "Strength & Conditioning",
     experience: "12 years",
     quote: "Limits exist only in the mind.",
-    image: "https://images.unsplash.com/photo-1567013127542-490d757e51fc?w=400&q=80",
+    image_url: "https://images.unsplash.com/photo-1567013127542-490d757e51fc?w=400&q=80",
   },
   {
+    id: "2",
     name: "Sarah Chen",
-    specialization: "HIIT & CrossFit",
+    specialty: "HIIT & CrossFit",
     experience: "8 years",
     quote: "Every rep counts. Every drop of sweat matters.",
-    image: "https://images.unsplash.com/photo-1594381898411-846e7d193883?w=400&q=80",
+    image_url: "https://images.unsplash.com/photo-1594381898411-846e7d193883?w=400&q=80",
   },
   {
+    id: "3",
     name: "David Williams",
-    specialization: "Personal Training",
+    specialty: "Personal Training",
     experience: "15 years",
     quote: "Your body can do it. It's your mind you need to convince.",
-    image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400&q=80",
+    image_url: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400&q=80",
   },
   {
+    id: "4",
     name: "Emily Rodriguez",
-    specialization: "Yoga & Flexibility",
+    specialty: "Yoga & Flexibility",
     experience: "10 years",
     quote: "Balance is not something you find. It's something you create.",
-    image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=400&q=80",
+    image_url: "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=400&q=80",
   },
 ];
 
 const TrainersSection = () => {
+  const [trainers, setTrainers] = useState<Trainer[]>(fallbackTrainers);
+
+  useEffect(() => {
+    const fetchTrainers = async () => {
+      const { data, error } = await supabase
+        .from("trainers")
+        .select("id, name, specialty, experience, quote, image_url")
+        .order("sort_order");
+      
+      if (data && data.length > 0 && !error) {
+        setTrainers(data);
+      }
+    };
+    fetchTrainers();
+  }, []);
+
   return (
     <section id="trainers" className="section-container bg-background">
       <motion.div
@@ -57,7 +88,7 @@ const TrainersSection = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {trainers.map((trainer, index) => (
           <motion.div
-            key={trainer.name}
+            key={trainer.id}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -66,7 +97,7 @@ const TrainersSection = () => {
           >
             <div className="relative overflow-hidden rounded-xl mb-4">
               <img
-                src={trainer.image}
+                src={trainer.image_url || "https://images.unsplash.com/photo-1567013127542-490d757e51fc?w=400&q=80"}
                 alt={trainer.name}
                 className="w-full h-[350px] object-cover transition-transform duration-500 group-hover:scale-110"
               />
@@ -89,7 +120,7 @@ const TrainersSection = () => {
                     {trainer.name}
                   </h3>
                   <p className="text-primary text-sm font-medium">
-                    {trainer.specialization}
+                    {trainer.specialty}
                   </p>
                   <p className="text-muted-foreground text-xs mt-1">
                     {trainer.experience} experience
@@ -98,9 +129,11 @@ const TrainersSection = () => {
               </div>
             </div>
             
-            <p className="text-muted-foreground text-sm italic text-center px-2">
-              "{trainer.quote}"
-            </p>
+            {trainer.quote && (
+              <p className="text-muted-foreground text-sm italic text-center px-2">
+                "{trainer.quote}"
+              </p>
+            )}
           </motion.div>
         ))}
       </div>

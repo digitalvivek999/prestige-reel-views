@@ -1,4 +1,5 @@
-import { Dumbbell, Instagram, Facebook, Youtube, Twitter, MapPin, Phone, Mail } from "lucide-react";
+import { Dumbbell, Instagram, Facebook, Youtube, Twitter, MapPin, Phone, Mail, Settings } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const GymFooter = () => {
   const quickLinks = [
@@ -127,6 +128,9 @@ const GymFooter = () => {
             <a href="#" className="hover:text-foreground transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-foreground transition-colors">Terms of Service</a>
             <a href="#" className="hover:text-foreground transition-colors">FAQ</a>
+            <Link to="/admin" className="hover:text-primary transition-colors flex items-center gap-1">
+              <Settings className="w-3 h-3" /> Admin
+            </Link>
           </div>
         </div>
       </div>

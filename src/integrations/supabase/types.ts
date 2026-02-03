@@ -14,7 +14,233 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      class_schedule: {
+        Row: {
+          class_name: string
+          day_of_week: string
+          id: string
+          is_active: boolean
+          time_slot: string
+          trainer_id: string | null
+        }
+        Insert: {
+          class_name: string
+          day_of_week: string
+          id?: string
+          is_active?: boolean
+          time_slot: string
+          trainer_id?: string | null
+        }
+        Update: {
+          class_name?: string
+          day_of_week?: string
+          id?: string
+          is_active?: boolean
+          time_slot?: string
+          trainer_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "class_schedule_trainer_id_fkey"
+            columns: ["trainer_id"]
+            isOneToOne: false
+            referencedRelation: "trainers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      contact_submissions: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          is_read: boolean
+          message: string | null
+          name: string
+          phone: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          is_read?: boolean
+          message?: string | null
+          name: string
+          phone?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          is_read?: boolean
+          message?: string | null
+          name?: string
+          phone?: string | null
+        }
+        Relationships: []
+      }
+      gallery_images: {
+        Row: {
+          category: string
+          created_at: string
+          id: string
+          image_url: string
+          is_active: boolean
+          sort_order: number
+          title: string
+        }
+        Insert: {
+          category?: string
+          created_at?: string
+          id?: string
+          image_url: string
+          is_active?: boolean
+          sort_order?: number
+          title: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          id?: string
+          image_url?: string
+          is_active?: boolean
+          sort_order?: number
+          title?: string
+        }
+        Relationships: []
+      }
+      pricing_plans: {
+        Row: {
+          created_at: string
+          features: Json
+          id: string
+          is_active: boolean
+          is_popular: boolean
+          name: string
+          period: string
+          price: number
+          sort_order: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          features?: Json
+          id?: string
+          is_active?: boolean
+          is_popular?: boolean
+          name: string
+          period?: string
+          price: number
+          sort_order?: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          features?: Json
+          id?: string
+          is_active?: boolean
+          is_popular?: boolean
+          name?: string
+          period?: string
+          price?: number
+          sort_order?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      site_settings: {
+        Row: {
+          id: string
+          key: string
+          updated_at: string
+          value: Json
+        }
+        Insert: {
+          id?: string
+          key: string
+          updated_at?: string
+          value?: Json
+        }
+        Update: {
+          id?: string
+          key?: string
+          updated_at?: string
+          value?: Json
+        }
+        Relationships: []
+      }
+      testimonials: {
+        Row: {
+          client_name: string
+          created_at: string
+          id: string
+          image_url: string | null
+          is_active: boolean
+          membership_type: string | null
+          quote: string
+          rating: number
+        }
+        Insert: {
+          client_name: string
+          created_at?: string
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          membership_type?: string | null
+          quote: string
+          rating?: number
+        }
+        Update: {
+          client_name?: string
+          created_at?: string
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          membership_type?: string | null
+          quote?: string
+          rating?: number
+        }
+        Relationships: []
+      }
+      trainers: {
+        Row: {
+          created_at: string
+          experience: string
+          id: string
+          image_url: string | null
+          is_active: boolean
+          name: string
+          quote: string | null
+          sort_order: number
+          specialty: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          experience: string
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          name: string
+          quote?: string | null
+          sort_order?: number
+          specialty: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          experience?: string
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          name?: string
+          quote?: string | null
+          sort_order?: number
+          specialty?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
